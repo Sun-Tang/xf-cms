@@ -1,4 +1,4 @@
-<template>珠峰培训</template>
+<template>珠峰</template>
 
 <script setup></script>
 
