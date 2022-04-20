@@ -41,7 +41,6 @@
       <router-view />
     </el-container>
   </div>
-  <router-view></router-view>
 </template>
 
 <script setup>

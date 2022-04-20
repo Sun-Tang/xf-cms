@@ -54,9 +54,7 @@ onMounted(() => {
 // 获取用户信息
 const getUserInfo = async () => {
   getUser().then((res) => {
-    console.log(res.data);
     userInfo.value = res.data;
-    console.log(userInfo);
   });
 };
 // 退出登录
