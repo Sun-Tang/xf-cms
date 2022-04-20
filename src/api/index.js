@@ -8,3 +8,7 @@ export const login = (userName, password) => {
     passwordMd5: md5(password), // 密码需要 md5 加密
   })
 }
+
+export const getUser = () => axios.get("/adminUser/profile")
+
+export const logoutDelete = () => axios.delete("/logout")
