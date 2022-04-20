@@ -18,8 +18,12 @@
           </div>
         </template>
         <div class="nickname">
-          <p>登录名：{{ (userInfo && userInfo.loginUserName) || "" }}</p>
-          <p>昵称：{{ (userInfo && userInfo.nickName) || "" }}</p>
+          <p style="margin: 15px 0">
+            登录名：{{ (userInfo && userInfo.loginUserName) || "" }}
+          </p>
+          <p style="margin: 15px 0">
+            昵称：{{ (userInfo && userInfo.nickName) || "" }}
+          </p>
           <el-tag size="small" effect="dark" class="logout" @click="logout"
             >退出</el-tag
           >
@@ -99,6 +103,7 @@ router.afterEach((to) => {
     50% 50% no-repeat !important;
   background-size: cover !important;
   border-radius: 0 !important;
+  padding: 20px;
 }
 .popper-user-box .nickname {
   position: relative;
