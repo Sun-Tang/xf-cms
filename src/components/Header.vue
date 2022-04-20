@@ -1,11 +1,30 @@
 <template>
   <div class="header">
-    <div class="left">左</div>
+    <div class="left">
+      <span style="font-size: 20px">{{ name }}</span>
+    </div>
     <div class="right">右</div>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from "vue";
+import { useRouter } from "vue-router";
+// 获取路由实例
+const router = useRouter();
+// 声明路由和 title 对应的键值对
+const pathMap = {
+  index: "首页",
+  add: "添加商品",
+};
+const name = ref("首页");
+// 监听路由变化方法 afterEach
+router.afterEach((to) => {
+  // to 能获取到路由相关信息。
+  const { id } = to.query;
+  name.value = pathMap[to.name];
+});
+</script>
 
 <style scoped>
 .header {

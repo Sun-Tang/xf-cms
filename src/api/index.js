@@ -1,11 +1,10 @@
-import http from "./http";
+import axios from "./http"
+// 安装 js-md5，密码需要 md5 加密，服务端是解密 md5 的形式
+import md5 from 'js-md5'
 
-const test = () => http.get('/api/news_latest')
-
-const test1 = time => {
-    return http.get('/api/news_latest', {
-        params: {
-            time
-        }
-    })
+export const login = (userName, password) => {
+  return axios.post('/adminUser/login', {
+    userName,
+    passwordMd5: md5(password), // 密码需要 md5 加密
+  })
 }

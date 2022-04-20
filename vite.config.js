@@ -19,14 +19,15 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: '',
+        target: 'http://backend-api-02.newbee.ltd/manage-api/v1',
         changeOrigin: true,
-        ws: true,
         rewrite: path => path.replace(/^\/api/, '')
       }
     }
   },
   resolve: {
-    alias: [{ find: '@', replacement: resolve(__dirname, 'src') }]
+    alias: [
+      { find: '@', replacement: resolve(__dirname, 'src') }
+    ]
   }
 })

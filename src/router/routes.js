@@ -1,11 +1,20 @@
-import Home from './../views/Home.vue'
 
 const routes = [
     {
         path: '/',
-        name: 'Home',
+        name: 'index',
         meta: {},
-        component: Home
+        component: import('@/views/Index.vue')
+    },
+    {
+        path: '/add',
+        name: 'add',
+        component: import('@/views/AddGood.vue')
+    },
+    {
+        path: '/login',
+        name: 'login',
+        component: () => import('@/views/Login.vue')
     }
 ]
 
