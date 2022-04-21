@@ -1,36 +1,25 @@
 <template>
-  <div class="header">
-    <div class="left">
-      <span style="font-size: 20px">{{ name }}</span>
-    </div>
-    <div class="right">
-      <el-popover
-        placement="bottom"
-        :width="320"
-        trigger="click"
-        popper-class="popper-user-box"
-      >
-        <template #reference>
-          <div class="author">
-            <el-icon><avatar /></el-icon>
-            {{ (userInfo && userInfo.nickName) || "" }}
-            <el-icon><caret-bottom /></el-icon>
-          </div>
-        </template>
-        <div class="nickname">
-          <p style="margin: 15px 0">
-            登录名：{{ (userInfo && userInfo.loginUserName) || "" }}
-          </p>
-          <p style="margin: 15px 0">
-            昵称：{{ (userInfo && userInfo.nickName) || "" }}
-          </p>
-          <el-tag size="small" effect="dark" class="logout" @click="logout"
-            >退出</el-tag
-          >
+    <div class="header">
+        <div class="left">
+            <span style="font-size: 20px">{{ name }}</span>
         </div>
-      </el-popover>
+        <div class="right">
+            <el-popover placement="bottom" :width="320" trigger="click" popper-class="popper-user-box">
+                <template #reference>
+                    <div class="author">
+                        <el-icon><avatar /></el-icon>
+                        {{ (userInfo && userInfo.nickName) || "" }}
+                        <el-icon><caret-bottom /></el-icon>
+                    </div>
+                </template>
+                <div class="nickname">
+                    <p style="margin: 15px 0">登录名：{{ (userInfo && userInfo.loginUserName) || "" }}</p>
+                    <p style="margin: 15px 0">昵称：{{ (userInfo && userInfo.nickName) || "" }}</p>
+                    <el-tag size="small" effect="dark" class="logout" @click="logout">退出</el-tag>
+                </div>
+            </el-popover>
+        </div>
     </div>
-  </div>
 </template>
 
 <script setup>
@@ -46,71 +35,70 @@ const userInfo = ref(null); // 用户信息变量
 
 // 初始化执行方法
 onMounted(() => {
-  const pathname = window.location.hash.split("/")[1] || "";
-  if (!["login"].includes(pathname)) {
-    getUserInfo();
-  }
+    const pathname = window.location.hash.split("/")[1] || "";
+    if (!["login"].includes(pathname)) {
+        getUserInfo();
+    }
 });
 // 获取用户信息
 const getUserInfo = async () => {
-  getUser().then((res) => {
-    userInfo.value = res.data;
-  });
+    getUser().then(res => {
+        userInfo.value = res.data;
+    });
 };
 // 退出登录
 const logout = () => {
-  logoutDelete().then(() => {
-    // 退出之后，将本地保存的 token  清理掉
-    localRemove("token");
-    // 回到登录页
-    router.push({ path: "/login" });
-  });
+    logoutDelete().then(() => {
+        // 退出之后，将本地保存的 token  清理掉
+        localRemove("token");
+        // 回到登录页
+        router.push({ path: "/login" });
+    });
 };
 // 监听路由变化方法 afterEach
-router.afterEach((to) => {
-  // to 能获取到路由相关信息。
-  const { id } = to.query;
-  name.value = pathMap[to.name];
+router.afterEach(to => {
+    // to 能获取到路由相关信息。
+    const { id } = to.query;
+    name.value = pathMap[to.name];
 });
 </script>
 
 <style scoped>
 .header {
-  height: 50px;
-  border-bottom: 1px solid #e9e9e9;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
+    height: 50px;
+    border-bottom: 1px solid #e9e9e9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
 }
 .right > div > .el-icon {
-  font-size: 20px;
-  margin-right: 6px;
+    font-size: 20px;
+    margin-right: 6px;
 }
 .author {
-  margin-left: 10px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  font-size: 16px;
+    margin-left: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
 }
 </style>
 <style>
 .popper-user-box {
-  background: url("https://s.yezgea02.com/lingling-h5/static/account-banner-bg.png")
-    50% 50% no-repeat !important;
-  background-size: cover !important;
-  border-radius: 0 !important;
-  padding: 20px;
+    background: url("https://s.yezgea02.com/lingling-h5/static/account-banner-bg.png") 50% 50% no-repeat !important;
+    background-size: cover !important;
+    border-radius: 0 !important;
+    padding: 20px;
 }
 .popper-user-box .nickname {
-  position: relative;
-  color: #ffffff;
+    position: relative;
+    color: #ffffff;
 }
 .popper-user-box .nickname .logout {
-  position: absolute;
-  right: 0;
-  top: 0;
-  cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
 }
 </style>
