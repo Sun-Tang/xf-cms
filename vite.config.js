@@ -29,4 +29,14 @@ export default defineConfig({
     resolve: {
         alias: [{ find: "@", replacement: resolve(__dirname, "src") }],
     },
+    css: {
+        // css预处理器
+        // 引入全局样式
+        preprocessorOptions: {
+            less: {
+                charset: false,
+                additionalData: '@import "./src/assets/style/global.less";',
+            },
+        },
+    },
 });
