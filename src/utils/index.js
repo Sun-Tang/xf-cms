@@ -34,5 +34,9 @@ export const pathMap = {
     goodssetting: "热销商品设置",
     productsetting: "新品上线设置",
     recommendsetting: "为你推荐设置",
+    goodsmanager: '商品管理',
+    membermanager: '会员管理',
+    ordermanager: '订单管理',
+    orderdetail: '订单详情',
     alteruser: "修改账户",
 };

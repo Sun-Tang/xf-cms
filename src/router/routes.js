@@ -1,5 +1,4 @@
-const routes = [
-    {
+const routes = [{
         path: "/",
         name: "index",
         meta: {},
@@ -38,6 +37,26 @@ const routes = [
         path: "/recommendsetting",
         name: "recommendsetting",
         component: () => import("@/views/RecommendSetting.vue"),
+    },
+    {
+        // 商品管理
+        path: "/goodsmanager",
+        name: "goodsmanager",
+        component: () => import("@/views/GoodsManager.vue"),
+    }, {
+        // 会员管理
+        path: "/membermanager",
+        name: "membermanager",
+        component: () => import("@/views/MemberManager.vue"),
+    }, {
+        // 订单管理
+        path: "/ordermanager",
+        name: "ordermanager",
+        component: () => import("@/views/OrderManager.vue"),
+    }, {
+        path: '/orderdetail',
+        name: 'orderdetail',
+        component: () => import( /* webpackChunkName: "orderdetail" */ '../views/OrderDetail.vue')
     },
     {
         // 修改账户
